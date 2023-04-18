@@ -14,27 +14,80 @@ body {
 			color: rgb(206, 206, 105);
 		}
 
-		.employees {
-			.employee {
-				background-color: #222;
-				padding: 1rem;
-				margin-bottom: 1rem;
-				width: 20rem;
+		main {
+			display: flex;
+			gap: 3rem;
 
-				.fullName {
-					color: rgb(201, 135, 12);
-					font-size: 1.4rem;
+			section.showEmployeesArea {
+				.employees {
+					.employee {
+						background-color: #222;
+						padding: 1rem;
+						margin-bottom: 1rem;
+						width: 20rem;
+
+						.fullName {
+							color: rgb(201, 135, 12);
+							font-size: 1.4rem;
+						}
+
+						.title {
+							color: rgb(229, 229, 128);
+							font-style: italic;
+							font-size: 1.2rem;
+						}
+
+						.age {
+							margin-top: .5rem;
+						}
+					}
 				}
-				.title {
-					color: rgb(229, 229, 128);
-					font-style: italic;
-					font-size: 1.2rem;
-				}
-				.age {
-					margin-top: .5rem;
+			}
+
+			section.addEmployeeArea {
+				form {
+					background-color: #222;
+					border-radius: 6px;
+
+					fieldset {
+						margin-top: 1em;
+						padding: 1rem 1.5rem 2rem 1.5rem;
+						border: none;
+						min-width: 400px;
+					}
+
+					label {
+						display: block;
+						padding-top: .5em;
+						color: #aaa;
+						margin-bottom: .2rem;
+					}
+
+					input {
+						padding: .5em;
+						border: 1px solid #999;
+						width: 96%;
+					}
+
+					.typeNumber {
+						width: 3rem;
+						text-align: right;
+					}
+
+					.buttonRow {
+						display: flex;
+						justify-content: flex-end;
+
+						button {
+							margin-top: 1rem;
+							font-size: 1rem;
+
+						}
+					}
 				}
 			}
 		}
+
 	}
 
 }
