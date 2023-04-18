@@ -14,6 +14,7 @@ const _formData = {
 function App() {
 	const [employees, setEmployees] = useState([]);
 	const [formData, setFormData] = useState({ ..._formData });
+	const [errorMessage, setErrorMessage] = useState('');
 
 	useEffect(() => {
 		(async () => {
@@ -27,23 +28,27 @@ function App() {
 	};
 
 	const handleSaveButton = (e) => {
+		setErrorMessage('');
 		e.preventDefault();
 		(async () => {
-			const response = await axios.post(`${backendUrl}/employee`,
-				{
-					employee: formData
-				},
-				{
-					headers: {
-						'Content-Type': 'application/json',
+			try {
+				const response = await axios.post(`${backendUrl}/employee`,
+					{
+						employee: formData
 					},
-				}
-			);
-			const newEmployee = response.data.employeeAdded;
-			employees.push(newEmployee);
-			setEmployees([...employees]);
-
-			setFormData({ ..._formData });
+					{
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					}
+				);
+				const newEmployee = response.data.employeeAdded;
+				employees.push(newEmployee);
+				setEmployees([...employees]);
+				setFormData({ ..._formData });
+			} catch (e) {
+				setErrorMessage(e.response.data.error.message);
+			}
 		})();
 	};
 
@@ -103,8 +108,10 @@ function App() {
 								<button onClick={(e) => handleSaveButton(e)}>Save</button>
 							</div>
 						</fieldset>
-
 					</form>
+					{errorMessage.trim() !== '' && (
+						<div className="errorMessage">{errorMessage}</div>
+					)}
 				</section>
 			</main>
 		</div>

@@ -85,6 +85,14 @@ body {
 						}
 					}
 				}
+
+				.errorMessage {
+					background-color: rgb(150, 26, 26);
+					margin-top: 1rem;
+					padding: 1rem;
+					color:rgb(206, 206, 105);
+					border-radius: 6px;
+				}
 			}
 		}
 
