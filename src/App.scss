@@ -4,7 +4,37 @@ body {
 	font-family: sans-serif;
 	padding: 0 1rem;
 
-	h1 {
-		color: rgb(209, 168, 85);
+	.App {
+
+		h1 {
+			color: rgb(209, 168, 85);
+		}
+
+		h2 {
+			color: rgb(206, 206, 105);
+		}
+
+		.employees {
+			.employee {
+				background-color: #222;
+				padding: 1rem;
+				margin-bottom: 1rem;
+				width: 20rem;
+
+				.fullName {
+					color: rgb(201, 135, 12);
+					font-size: 1.4rem;
+				}
+				.title {
+					color: rgb(229, 229, 128);
+					font-style: italic;
+					font-size: 1.2rem;
+				}
+				.age {
+					margin-top: .5rem;
+				}
+			}
+		}
 	}
+
 }
