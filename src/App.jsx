@@ -13,7 +13,7 @@ const _formData = {
 
 function App() {
 	const [employees, setEmployees] = useState([]);
-	const [formData, setFormData] = useState(_formData);
+	const [formData, setFormData] = useState({ ..._formData });
 
 	useEffect(() => {
 		(async () => {
@@ -39,6 +39,11 @@ function App() {
 					},
 				}
 			);
+			const newEmployee = response.data.employeeAdded;
+			employees.push(newEmployee);
+			setEmployees([...employees]);
+
+			setFormData({ ..._formData });
 		})();
 	};
 
