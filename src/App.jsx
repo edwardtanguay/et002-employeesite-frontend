@@ -9,7 +9,7 @@ const _formData = {
 	lastName: '',
 	title: '',
 	age: 0
-}
+};
 
 function App() {
 	const [employees, setEmployees] = useState([]);
@@ -24,7 +24,23 @@ function App() {
 	const handleFormFieldChange = (fieldName, value) => {
 		formData[fieldName] = value;
 		setFormData({ ...formData });
-	}
+	};
+
+	const handleSaveButton = (e) => {
+		e.preventDefault();
+		(async () => {
+			const response = await axios.post(`${backendUrl}/employee`,
+				{
+					employee: formData
+				},
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
+			);
+		})();
+	};
 
 	return (
 		<div className="App">
@@ -49,44 +65,41 @@ function App() {
 					<h2>Add Employee</h2>
 					<form>
 						<fieldset>
-							<label for="firstName">First Name:</label>
+							<label htmlFor="firstName">First Name:</label>
 							<input type="text"
 								value={formData.firstName}
-								onChange={(e)=>handleFormFieldChange('firstName', e.target.value)}
+								onChange={(e) => handleFormFieldChange('firstName', e.target.value)}
 								name="firstName"
 								id="firstName" />
 
-							<label for="lastName">Last Name:</label>
+							<label htmlFor="lastName">Last Name:</label>
 							<input type="text"
 								value={formData.lastName}
-								onChange={(e)=>handleFormFieldChange('lastName', e.target.value)}
+								onChange={(e) => handleFormFieldChange('lastName', e.target.value)}
 								name="lastName"
 								id="lastName" />
 
-							<label for="title">Title:</label>
+							<label htmlFor="title">Title:</label>
 							<input type="text"
 								value={formData.title}
-								onChange={(e)=>handleFormFieldChange('title', e.target.value)}
+								onChange={(e) => handleFormFieldChange('title', e.target.value)}
 								name="title"
 								id="title" />
 
-							<label for="age">Age:</label>
+							<label htmlFor="age">Age:</label>
 							<input type="text"
 								value={formData.age}
-								onChange={(e)=>handleFormFieldChange('age', e.target.value)}
-								class="typeNumber"
+								onChange={(e) => handleFormFieldChange('age', e.target.value)}
+								className="typeNumber"
 								name="age"
 								id="age" />
 
 							<div className="buttonRow">
-								<button>Save</button>
+								<button onClick={(e) => handleSaveButton(e)}>Save</button>
 							</div>
 						</fieldset>
 
 					</form>
-					<pre>
-						{JSON.stringify(formData, null, 2)}
-					</pre>
 				</section>
 			</main>
 		</div>
